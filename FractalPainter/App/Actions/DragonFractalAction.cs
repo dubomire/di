@@ -7,9 +7,6 @@ namespace FractalPainting.App.Actions
 {
     public class DragonFractalAction : IUiAction
     {
-        private readonly IImageHolder imageHolder;
-        private readonly DragonSettings dragonSettings;
-        private readonly Palette palette;
         private readonly Func<DragonSettings, DragonPainter> dragonFactory;
 
         public string Category => "Фракталы";
