@@ -34,8 +34,6 @@ namespace FractalPainting.App
             
             container.Bind<Palette>().ToSelf().InSingletonScope();
             container.Bind<IImageHolder, PictureBoxImageHolder>().To<PictureBoxImageHolder>().InSingletonScope();
-
-            container.Bind<KochPainter>().ToSelf();
         }
         
         /// <summary>
