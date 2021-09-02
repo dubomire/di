@@ -2,7 +2,6 @@
 using FractalPainting.App.Fractals;
 using FractalPainting.Infrastructure.Common;
 using FractalPainting.Infrastructure.UiActions;
-using Ninject;
 
 namespace FractalPainting.App.Actions
 {
@@ -11,24 +10,14 @@ namespace FractalPainting.App.Actions
         private readonly IImageHolder imageHolder;
         private readonly DragonSettings dragonSettings;
         private readonly Palette palette;
-        private readonly Func<IImageHolder, Palette, DragonSettings, DragonPainter> dragonFactory;
+        private readonly Func<DragonSettings, DragonPainter> dragonFactory;
 
         public string Category => "Фракталы";
         public string Name => "Дракон";
         public string Description => "Дракон Хартера-Хейтуэя";
 
-        public DragonFractalAction(
-            IImageHolder imageHolder,
-            DragonSettings dragonSettings,
-            Palette palette,
-            Func<IImageHolder,
-                Palette,
-                DragonSettings,
-                DragonPainter> dragonFactory)
+        public DragonFractalAction(Func<DragonSettings, DragonPainter> dragonFactory)
         {
-            this.imageHolder = imageHolder;
-            this.dragonSettings = dragonSettings;
-            this.palette = palette;
             this.dragonFactory = dragonFactory;
         }
 
@@ -38,7 +27,7 @@ namespace FractalPainting.App.Actions
             // редактируем настройки:
             SettingsForm.For(dragonSettings).ShowDialog();
             // создаём painter с такими настройками
-            var painter = dragonFactory(imageHolder, palette, dragonSettings);
+            var painter = dragonFactory(dragonSettings);
             painter.Paint();
         }
 
