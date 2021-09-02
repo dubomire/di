@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using FractalPainting.App.Actions;
 using FractalPainting.Infrastructure.Common;
-using FractalPainting.Infrastructure.Injection;
 using FractalPainting.Infrastructure.UiActions;
 using Ninject;
 
@@ -26,11 +24,6 @@ namespace FractalPainting.App
             pictureBox.RecreateImage(imageSettings);
             pictureBox.Dock = DockStyle.Fill;
             Controls.Add(pictureBox);
-
-            DependencyInjector.Inject<IImageHolder>(actions, pictureBox);
-            DependencyInjector.Inject<IImageDirectoryProvider>(actions, CreateSettingsManager().Load());
-            DependencyInjector.Inject<IImageSettingsProvider>(actions, CreateSettingsManager().Load());
-            DependencyInjector.Inject(actions, pallete);
         }
         
         private static SettingsManager CreateSettingsManager()
