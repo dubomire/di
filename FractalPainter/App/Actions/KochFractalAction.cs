@@ -7,8 +7,8 @@ namespace FractalPainting.App.Actions
 {
     public class KochFractalAction : IUiAction
     {
-        private IImageHolder imageHolder;
-        private Palette palette;
+        private readonly IImageHolder imageHolder;
+        private readonly Palette palette;
 
         public KochFractalAction(IImageHolder imageHolder, Palette palette)
         {
